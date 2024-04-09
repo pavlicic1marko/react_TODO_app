@@ -13,8 +13,14 @@ export default function App(){
       </form>
 
       <h1 className="header">Todo List</h1>
-      <ul>
-        <li>TEST</li>
+      <ul className="list">
+        <li>
+          <label >
+            <input type="checkbox" />
+            item 1
+          </label>
+          <button className="btn btn-danger">DELETE</button>
+        </li>
       </ul>
     </>
   )
