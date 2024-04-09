@@ -51,6 +51,7 @@ export default function App(){
 
       <h1 className="header">Todo List</h1>
       <ul className="list">
+          {todos.length === 0 && "there are no TODOS"}
           {todos.map(todo => {
             return(
             <li key={todo.id}>
