@@ -1,10 +1,23 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./styles.css"
 
 export default function App(){
 
   const [newItem,setNewItem] = useState('')
-  const [todos,setTodos] = useState([])
+
+  const [todos,setTodos] = useState(() =>{
+    const localValue = localStorage.getItem("ITEMS")
+    if (localValue == null) return []
+
+    return JSON.parse(localValue)
+
+
+  })
+
+
+
+
+
 
   function handelSubmit(e){
     e.preventDefault()
@@ -36,6 +49,10 @@ export default function App(){
       return currentTodos.filter(todo => todo.id !==id)
     })
   }
+
+  useEffect(() => {
+    localStorage.setItem("ITEMS", JSON.stringify(todos))
+  }, [todos])
 
   console.log(todos)
 
