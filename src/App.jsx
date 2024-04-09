@@ -16,6 +16,7 @@ export default function App(){
            false },
           ]
     })
+    setNewItem('')
   }
 
   console.log(todos)
@@ -34,12 +35,11 @@ export default function App(){
       <ul className="list">
           {todos.map(todo => {
             return(
-            <li>
-
-            <label >
-                <input type="checkbox" checked={todo.completed}/>
-                 {todo.title}
-            </label>
+            <li key={todo.id}>
+              <label >
+                  <input type="checkbox" checked={todo.completed}/>
+                  {todo.title}
+              </label>
               <button className="btn btn-danger">DELETE</button>
             </li>
           )
