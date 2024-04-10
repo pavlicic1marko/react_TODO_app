@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react"
 import "./styles.css"
+import { NewTodoForm } from "./NewTodoForm"
 
 export default function App(){
-
-  const [newItem,setNewItem] = useState('')
 
   const [todos,setTodos] = useState(() =>{
     const localValue = localStorage.getItem("ITEMS")
@@ -14,22 +13,15 @@ export default function App(){
 
   })
 
-
-
-
-
-
-  function handelSubmit(e){
-    e.preventDefault()
-
+  function addTodo(title){
     setTodos(currentTodos => {
       return [
         ...currentTodos, 
-        {id: crypto.randomUUID(), title: newItem, completed:
+        {id: crypto.randomUUID(), title, completed:
            false },
           ]
     })
-    setNewItem('')
+
   }
 
   function toggleTodo(id, completed){
@@ -58,14 +50,9 @@ export default function App(){
 
   return (
     <>
-      <form onSubmit={handelSubmit} className="new-item-form">
-        <div className="form-row">
-          <label>New Item</label>
-          <input value={newItem} onChange={e => setNewItem(e.target.value)} type="text" />
-        </div>
-        <button className="btn">Create</button>
-      </form>
 
+
+      <NewTodoForm onSubmit={addTodo} />
       <h1 className="header">Todo List</h1>
       <ul className="list">
           {todos.length === 0 && "there are no TODOS"}
